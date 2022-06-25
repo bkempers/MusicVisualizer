@@ -6,4 +6,5 @@ export default class Sound{
         this.highMid = highMid;
         this.treble = treble;
     }
+    
 }

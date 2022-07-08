@@ -13,18 +13,27 @@
     <script type="module" src="music_visualization.js"></script>
 </head>
 
-<nav>
-    <a href="homepage.html">Homepage</a>
-    <a href="audio_values.html">Audio Values</a>
-    <a href="music_visualizer.html">Music Visualizer</a>
+<nav class="m-1.5">
+    <a class="p-1" href="homepage.html">Homepage</a>
+    <a class="p-1" href="audio_values.html">Audio Values</a>
+    <a class="p-1 font-bold" href="music_visualizer.html">Music Visualizer</a>
 </nav>
 
 <body>
     <main>
         <div id="p5_music_visualizer_canvas"></div>
+
+        <div class="bg-gray-500 flex items-center justify-center">
+            <div>
+                <label for="colorpicker_one">Color Picker:</label>
+                <input type="color" id="colorpicker_one" value="#000000">
+            </div>
+        </div>
+
     </main>
 
     <script src="BroadcastCenter.js"></script>
+    <script src="VisualizerSettings.js"></script>
 </body>
 
 </html>

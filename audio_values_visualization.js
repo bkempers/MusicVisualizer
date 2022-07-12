@@ -48,6 +48,7 @@ audio.draw = function(){
 
   audio.fill("white");
   audio.textSize(18);
+
   audio.text("bass", (0*audio.width/5)+10, (audio.height/(5/4)) + 20)
   audio.text("lowMid", (1*audio.width/5)+10, (audio.height/(5/4)) + 20)
   audio.text("mid", (2*audio.width/5)+10, (audio.height/(5/4)) + 20)
@@ -59,8 +60,6 @@ audio.mousePressed = function(){
     var x = audio.mouseX,
       y = audio.mouseY;
 
-      console.log("mouse pressed");
-
       if(((x > (0*audio.width/5))+10 && x < (0*audio.width/5)+10)){
         if (((audio.height/(5/4)) + 20) > y < ((audio.height/(5/4)) + 80)){
           audio.soundObject.highlightedKey = "bass";
@@ -69,8 +68,6 @@ audio.mousePressed = function(){
 }
 
 audio.keyPressed = function(){
-  console.log("key pressed");
-
   //FN F1
   if(audio.keyCode == 112){
     audio.soundObject.highlightedKey = "bass";

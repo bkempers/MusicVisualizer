@@ -6,10 +6,9 @@
     <title>Homepage</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../dist/output.css" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet">
 
     <script type="module" src="../Firebase/Firebase.js"></script>
-    <script type="module" src="../Firebase/Firebase_Login.js" defer></script>
 </head>
 
 <nav class="m-1.5">
@@ -22,6 +21,41 @@
     <div class="text-center text-3xl font-bold underline">
         Customizable Audio Visualizer
     </div>
+
+    <br>
+
+    <div>
+        <div class="flex h-screen">Display Name: <div class="m-auto" id="display_name"></div></div>
+        <div class="">Email: <div class="w-5" id="email_address"></div></div>
+    </div>
+
+    <br>
+
+    <div>    
+        <div>
+            <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="googleSignInBtn">Sign In With Google</button>
+        </div>
+
+        <div>
+            <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="googleSignOutBtn" hidden="true">Sign Out</button>
+        </div>
+
+        <br>
+
+        <div>
+            <form>
+                <label for="email">Email Address: </label><br>
+                <input class="bg-gray-500" type="text" id="email" name="email"><br>
+                <label for="password">Password: </label><br>
+                <input class="bg-gray-500" type="text" id="password" name="password">
+                <br>
+                <button class="w-32 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="emailRegisterBtn">Register</button>
+                <button class="w-32 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="emailSignInBtn">Sign In</button>
+                <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="emailSignOutBtn" hidden="true">Sign Out</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 
 </html>

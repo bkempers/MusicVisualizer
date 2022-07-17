@@ -26,7 +26,7 @@ music.draw = function(){
   music.angleMode(music.DEGREES);
   music.translate(music.windowWidth/2, music.windowHeight/2);
 
-    document.querySelector("#colorpicker_one").onchange = e => {
+  document.querySelector("#colorpicker_one").onchange = e => {
     music.visualizerSettings.shapeColor1 = e.target.value;
   }
 

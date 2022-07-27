@@ -11,51 +11,47 @@
     <script type="module" src="../Firebase/Firebase.js"></script>
 </head>
 
-<nav class="m-1.5">
-    <a class="p-1 font-bold" href="./homepage.html">Homepage</a>
-    <a class="p-1" href="./audio_values.html">Audio Values</a>
-    <a class="p-1" href="./music_visualizer.html">Music Visualizer</a>
-</nav>
-
 <body>
-    <div class="text-center text-3xl font-bold underline">
-        Customizable Audio Visualizer
-    </div>
+    <main>
+        <nav class="m-1.5">
+            <a class="p-1 font-bold" href="./homepage.html">Homepage</a>
+            <a class="p-1" href="./audio_values.html">Audio Values</a>
+            <a class="p-1" href="./music_visualizer.html">Music Visualizer</a>
+        </nav>
 
-    <br>
-
-    <div>
-        <div class="flex h-screen">Display Name: <div class="m-auto" id="display_name"></div></div>
-        <div class="">Email: <div class="w-5" id="email_address"></div></div>
-    </div>
-
-    <br>
-
-    <div>    
-        <div>
-            <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="googleSignInBtn">Sign In With Google</button>
+        <div class="text-center text-3xl font-bold underline">
+            Customizable Audio Visualizer
         </div>
-
-        <div>
-            <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="googleSignOutBtn" hidden="true">Sign Out</button>
-        </div>
-
+    
         <br>
-
-        <div>
-            <form>
-                <label for="email">Email Address: </label><br>
-                <input class="bg-gray-500" type="text" id="email" name="email"><br>
-                <label for="password">Password: </label><br>
-                <input class="bg-gray-500" type="text" id="password" name="password">
-                <br>
+    
+        <div class="">
+            <div id="display_name">Display Name: </div>
+            <div id="email_address">Email: </div>
+        </div>
+    
+        <br>
+    
+        <div>    
+            <div>
+                <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="googleSignInBtn">Sign In With Google</button>
+            </div>
+    
+            <br>
+    
+            <div>
+                <form>
+                    <label for="emailLogin">Email Address: </label><br>
+                    <input class="bg-gray-500" type="text" id="emailLogin"><br>
+                    <label for="passwordLogin">Password: </label><br>
+                    <input class="bg-gray-500" type="text" id="passwordLogin">
+                </form>
                 <button class="w-32 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="emailRegisterBtn">Register</button>
                 <button class="w-32 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="emailSignInBtn">Sign In</button>
                 <button class="w-40 h-6 rounded-md bg-sky-500 hover:bg-sky-600" id="emailSignOutBtn" hidden="true">Sign Out</button>
-            </form>
+            </div>
         </div>
-    </div>
-
+    </main>
 </body>
 
 </html>

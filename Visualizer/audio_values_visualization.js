@@ -7,8 +7,9 @@ new p5(function(audio){
  audio.setup = function(){
   let audio_values_canvas = audio.createCanvas(audio.windowWidth, audio.windowHeight);
   audio_values_canvas.parent("p5_audio_values_canvas");
+  audio_values_canvas.mouseWheel(audio.audioSlider);
 
-  audio.soundObject = new Sound(0, 0, 0, 0, 0, 0, 0);
+  audio.soundObject = new Sound(0, 0, 0, 0, 0, 0, 0, audio.height/(5/4));
   audio.soundObject.highlighted = audio.soundObject.bass;
   audio.audioValues = ["bass", "lowMid", "mid", "highMid", "treble"];
 
@@ -54,6 +55,11 @@ audio.draw = function(){
   audio.text("mid", (2*audio.width/5)+10, (audio.height/(5/4)) + 20)
   audio.text("highMid", (3*audio.width/5)+10, (audio.height/(5/4)) + 20)
   audio.text("treble", (4*audio.width/5)+10, (audio.height/(5/4)) + 20)
+
+  audio.strokeWeight(2);
+  audio.stroke("red");
+  audio.line(0, audio.soundObject.audioSlider, audio.windowWidth, audio.soundObject.audioSlider);
+  audio.noStroke();
 }
 
 audio.mousePressed = function(){
@@ -74,28 +80,38 @@ audio.keyPressed = function(){
     audio.soundObject.highlighted = audio.soundObject.bass;
   }
   //FN F2
-  else if(audio.keyCode == 113){
+  if(audio.keyCode == 113){
     audio.soundObject.highlightedKey = "lowMid";
     audio.soundObject.highlighted = audio.soundObject.lowMid;
   }
   //FN F3
-  else if(audio.keyCode == 114){
+  if(audio.keyCode == 114){
     audio.soundObject.highlightedKey = "mid";
     audio.soundObject.highlighted = audio.soundObject.mid;
   }
   //FN F4
-  else if(audio.keyCode == 115){
+  if(audio.keyCode == 115){
     audio.soundObject.highlightedKey = "highMid";
     audio.soundObject.highlighted = audio.soundObject.highMid;
   }
   //FN F5
-  else if(audio.keyCode == 116){
+  if(audio.keyCode == 116){
     audio.soundObject.highlightedKey = "treble";
     audio.soundObject.highlighted = audio.soundObject.treble;
   }
   else{
     audio.soundObject.highlightedKey = "bass";
     audio.soundObject.highlighted = audio.soundObject.bass;
+  }
+  return false;
+}
+
+audio.audioSlider = function(){
+  if (event.deltaY < 0) {
+    if(audio.soundObject.audioSlider <= (audio.height/(5/4)))
+      audio.soundObject.audioSlider += 2.5;
+  } else {
+      audio.soundObject.audioSlider -= 2.5;
   }
 }
 

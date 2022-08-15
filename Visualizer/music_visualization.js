@@ -2,7 +2,6 @@ import Sound from "./Sound.js";
 import VisualizerSettings from "./VisualizerSettings.js";
 
 let background;
-let prevSelected = new Array();
 
 new p5(function(music){
 /*
@@ -17,14 +16,16 @@ new p5(function(music){
   music.chanel = new BroadcastChannel("sound_value_chanel");
 
   music.VisualizerShapeArray = new Array();
-  music.visualizerSettings = new VisualizerSettings("circle", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, true);
+  music.visualizerSettings = new VisualizerSettings("circle", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, true, true);
   music.VisualizerShapeArray.push(music.visualizerSettings);
 
   music.chanel.addEventListener("message", (event) => {
     music.soundObject = event.data;
     music.VisualizerShapeArray.forEach(function(element){
-      element.w = music.soundObject.highlighted;
-      element.h = music.soundObject.highlighted;
+      if(element.audio_attached == true){
+        element.w = music.soundObject.highlighted;
+        element.h = music.soundObject.highlighted;
+      }
     });
   });
 
@@ -36,6 +37,7 @@ new p5(function(music){
     music.VisualizerShapeArray.forEach(function(element){
       if(element.selected == true)
         element.shapeColor1 = e.target.value;
+        console.log(element.shapeColor1);
     });
   }
 
@@ -44,7 +46,7 @@ new p5(function(music){
       if(element.selected == true)
         element.shape = "circle";
       else{
-        let newCircle = new VisualizerSettings("circle", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, false);
+        let newCircle = new VisualizerSettings("circle", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, false, true);
         music.VisualizerShapeArray.push(newCircle);
       }
     });
@@ -55,18 +57,47 @@ new p5(function(music){
       if(element.selected == true)
         element.shape = "square";
       else{
-        let newSquare = new VisualizerSettings("square", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, false);
+        let newSquare = new VisualizerSettings("square", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, false, true);
         music.VisualizerShapeArray.push(newSquare);
       }
     });
   });
 
-  document.querySelector("#rotation_range").onchange = e => {
+  document.querySelector("#heart_button").addEventListener("click", function(){
     music.VisualizerShapeArray.forEach(function(element){
       if(element.selected == true)
-        element.rotation = e.target.value;
+        element.shape = "heart";
+      else{
+        let newHeart = new VisualizerSettings("heart", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, false, true);
+        music.VisualizerShapeArray.push(newHeart);
+      }
     });
-  }
+  });
+
+  document.querySelector("#flower_button").addEventListener("click", function(){
+    music.VisualizerShapeArray.forEach(function(element){
+      if(element.selected == true)
+        element.shape = "flower";
+      else{
+        let newFlower = new VisualizerSettings("flower", "black", 0, music.windowWidth/2, music.windowHeight/2, music.soundObject.highlighted, music.soundObject.highlighted, 0, 0, false, true);
+        music.VisualizerShapeArray.push(newFlower);
+      }
+    });
+  });
+
+  document.querySelector("#audio_attachment_button").addEventListener("click", function(){
+    for(var i = 0; i < music.VisualizerShapeArray.length; i++){
+      if(music.VisualizerShapeArray[i].selected)
+        music.VisualizerShapeArray[i].audio_attached  = !music.VisualizerShapeArray[i].audio_attached;
+    }
+  });
+
+  document.querySelector("#delete_button").addEventListener("click", function(){
+    for(var i = 0; i < music.VisualizerShapeArray.length; i++){
+      if(music.VisualizerShapeArray[i].selected)
+        music.VisualizerShapeArray.splice(i ,1);
+    }
+  });
 
   document.querySelector("#p5_music_visualizer_canvas").ondblclick = e =>{
     music.VisualizerShapeArray.forEach(function(element){
@@ -83,7 +114,6 @@ new p5(function(music){
 music.draw = function(){
   music.rectMode(music.CENTER);
   music.angleMode(music.DEGREES);
-  //music.translate(music.windowWidth/2, music.windowHeight/2);
 
   music.background(background);
   music.drawShape();
@@ -92,9 +122,9 @@ music.draw = function(){
 music.drawShape = function(){
   music.VisualizerShapeArray.forEach(function(element){
     element.over(music);
+    element.resize(music);
     element.update(music);
     element.show(music);
-    music.rotate(element.rotation);
   });
 }
 
@@ -107,6 +137,13 @@ music.mousePressed = function(){
 music.mouseReleased = function(){
   music.VisualizerShapeArray.forEach(function(element){
     element.released(music);
+  });
+}
+
+music.keyPressed = function(){
+  music.VisualizerShapeArray.forEach(function(element){
+    if(element.selected)
+      element.rotateShape(music);
   });
 }
 

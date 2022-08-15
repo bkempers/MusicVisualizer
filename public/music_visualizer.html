@@ -29,24 +29,26 @@
 
         <hr>
 
-        <button class="text-black px-8" id="circle_button">Circle</button>
-        <button class="text-black px-8" id="square_button">Square</button>
+        <div>
+            <label for="background_color">Background:</label>
+            <input type="color" id="background_color" value="#000000">
+        </div>
         
         <div class="">
+
+            <button class="text-black px-8" id="circle_button">Circle</button>
+            <button class="text-black px-8" id="square_button">Square</button>
+            <button class="text-black px-8" id="heart_button">Heart</button>
+            <button class="text-black px-8" id="flower_button">Flower</button>
+
             <div class="">
-                <label for="colorpicker_one">Shape One:</label>
+                <label for="colorpicker_one">Color Shape:</label>
                 <input type="color" id="colorpicker_one" value="#000000">
             </div>
-            <div>
-                <label for="background_color">Background:</label>
-                <input type="color" id="background_color" value="#000000">
-            </div>
 
-            <div>
-                <label for="rotation_range">Rotation</label>
-                <input type="range" id="rotation_range" name="rotation_range" min="0" max="360" value="0" step="1">
-                <button class="" id="rotate_button">Rotate</button>
-            </div>
+            <button class="text-black px-8" id="rotate_button">Rotate</button>
+            <button class="text-black px-8" id="audio_attachment_button">Audio Attachment</button>
+            <button class="text-black px-8" id="delete_button">Delete</button>
         </div>
 
     </main>
